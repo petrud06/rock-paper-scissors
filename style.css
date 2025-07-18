@@ -1,0 +1,60 @@
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 20px;
+}
+
+button img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* keeps aspect ratio, fills the box */
+  display: block;     /* removes default inline spacing */
+
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+  width: 100px;
+  height: 100px;
+}
+
+#Score {
+  background-color: red;
+  height: 100px;
+  width: 300px;
+  text-align: center;
+  font-size: 20px;
+  border: 2px solid black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#counter {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.button-container {
+  gap: 20px; /* adds spacing between buttons */
+}
+
+button:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

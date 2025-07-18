@@ -22,37 +22,61 @@ let humanScore = 0;
 let computerScore= 0;
 
 function playRound(humanChoice,computerChoice){
+    let gameOver= false;
+    if (gameOver) return;
     if (humanChoice===computerChoice){
-        console.log("TIE!");
+        score.textContent = "Tie";
         return;
     }
     if ((humanChoice==="Scissors" && computerChoice==="Paper") ||
        (humanChoice==="Rock" && computerChoice==="Scissors")||
        (humanChoice==="Paper" && computerChoice==="Rock"))
         {
-  
-        console.log("Player won this round!");
-        humanScore++;  
+        let hscore = document.querySelector("#hScore")
+        score.textContent = ("Player won this round!");
+        ++humanScore;
+        hscore.textContent = `Player: ${humanScore}`  
     } else {
-        console.log("CPU Won this round");
-        computerScore++;
+        
+        score.textContent = "CPU Won this round";
+        ++computerScore;
+        let cscore = document.querySelector("#cScore")
+        cscore.textContent = `CPU: ${computerScore}`;
     }
-    console.log(`Score: Player ${humanScore} vs CPU ${computerScore}`)
+
+    if (humanScore === 5 || computerScore ===5){
+        gameOver = true;
+        if (humanScore === 5) {
+            score.textContent = "🎉 Player wins the game!";
+        } else {
+        score.textContent = "💻 CPU wins the game!";
+        }
+        document.querySelectorAll(".button-container button").forEach(button => {
+        button.disabled = true;
+});
+    }   
 }
 
+const score = document.querySelector("#Score");
 
-function playGame(){
-    const humanSelection = getHumanChoice()
-    const computerSelection = getComputerChoice()
-    playRound(humanSelection,computerSelection)
-}
 
-for (let i = 0; i < 5; i++){
-    playGame()
 
-}
-if (humanScore < computerScore){
-    console.log("CPU WON!!!")
-}else{
-    console.log("Player WON!!!")
-};
+
+
+    const scissors = document.querySelector("#scissors");
+    scissors.addEventListener("click",() => {
+    playRound("Scissors",getComputerChoice());
+});
+    const rock = document.querySelector("#rock");
+    rock.addEventListener("click",() => {
+    playRound("Rock",getComputerChoice());
+});
+    const paper = document.querySelector("#paper");
+    paper.addEventListener("click",() => {
+    playRound("Paper",getComputerChoice());
+});
+
+
+
+
+
